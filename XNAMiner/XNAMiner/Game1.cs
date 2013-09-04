@@ -29,7 +29,12 @@ namespace XNAMiner
         static long _maxAgeTicks = 20000 * TimeSpan.TicksPerMillisecond;
         static uint _batchSize = 100000;
         SpriteFont font1;
-
+        string message1;
+        string errorMessage;
+        bool println = false;
+        bool error = false;
+        bool retry = false;
+        bool select = false;
         public bool consoleClear = false;
 
         public Game1()
@@ -47,7 +52,10 @@ namespace XNAMiner
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.ApplyChanges();
+            IsMouseVisible = true;
             base.Initialize();
         }
 
@@ -103,14 +111,17 @@ namespace XNAMiner
             }
             catch (Exception e)
             {
-                Console.WriteLine();
-                Console.Write("ERROR: ");
-                Console.WriteLine(e.Message);
+                errorMessage = e.Message;
+                error = true;
+                //Console.WriteLine();
+                //Console.Write("ERROR: ");
+                //Console.WriteLine(e.Message);
             }
-            Console.WriteLine();
-            Console.Write("Hit 'Enter' to try again...");
-            Console.ReadLine();
+            //Console.WriteLine();
+            //Console.Write("Hit 'Enter' to try again...");
+            //Console.ReadLine();
 
+            retry = true;
 
             // TODO: Add your update logic here
 
@@ -123,9 +134,50 @@ namespace XNAMiner
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
+            if (consoleClear == true)
+            {
+                spriteBatch.Begin();
+                GraphicsDevice.Clear(Color.Black);
+                spriteBatch.DrawString(font1, "*****************************", new Vector2(10, 20), Color.White);
+                spriteBatch.DrawString(font1, "*** Minimal Bitcoin Miner ***", new Vector2(10, 40), Color.White);
+                spriteBatch.DrawString(font1, "*****************************", new Vector2(10, 60), Color.White);
+                consoleClear = false;
+                spriteBatch.End();
+            }
+
+            if (println == true)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font1, message1, new Vector2(10, 100), Color.White);
+                println = false;
+                spriteBatch.End();
+            }
+
+            if (select == true)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font1, "Select Pool: ", new Vector2(10, 128), Color.White);
+                spriteBatch.End();
+            }
+
+            if (error == true)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font1, errorMessage, new Vector2(10, 148), Color.White);
+                error = false;
+                spriteBatch.End();
+            }
+
+            if (retry == true)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font1, "Hit 'Enter' to try again...", new Vector2(10, 168), Color.White);
+                retry = false;
+                spriteBatch.End();
+            }
 
             base.Draw(gameTime);
         }
@@ -314,25 +366,27 @@ namespace XNAMiner
             }
         }
 
-        private static void ClearConsole()
+        void ClearConsole()
         {
-            Console.Clear();
-            Console.WriteLine("*****************************");
-            Console.WriteLine("*** Minimal Bitcoin Miner ***");
-            Console.WriteLine("*****************************");
-            Console.WriteLine();
+            consoleClear = true;
+            //Console.Clear();
+            //Console.WriteLine("*****************************");
+            //Console.WriteLine("*** Minimal Bitcoin Miner ***");
+            //Console.WriteLine("*****************************");
+            //Console.WriteLine();
         }
 
-        private static Pool SelectPool()
+        Pool SelectPool()
         {
             ClearConsole();
             Print("Chose a Mining Pool 'user:password@url:port' or leave empty to skip.");
-            Console.Write("Select Pool: ");
+            select = true;
+            //Console.Write("Select Pool: ");
             string login = ReadLineDefault("lithander_2:foo@btcguild.com:8332");
             return new Pool(login);
         }
 
-        private static Work GetWork()
+        Work GetWork()
         {
             ClearConsole();
             Print("Requesting Work from Pool...");
@@ -342,7 +396,7 @@ namespace XNAMiner
             return _pool.GetWork();
         }
 
-        private static void SendShare(byte[] share)
+        void SendShare(byte[] share)
         {
             ClearConsole();
             Print("*** Found Valid Share ***");
@@ -359,8 +413,9 @@ namespace XNAMiner
             Console.ReadLine();
         }
 
-        private static DateTime _lastPrint = DateTime.Now;
-        private static void PrintCurrentState()
+        DateTime _lastPrint = DateTime.Now;
+
+        void PrintCurrentState()
         {
             ClearConsole();
             Print("Data: " + Utils.ToString(_work.Data));
@@ -374,17 +429,19 @@ namespace XNAMiner
             _lastPrint = DateTime.Now;
         }
 
-        private static void Print(string msg)
+        void Print(string msg)
         {
-            Console.WriteLine(msg);
-            Console.WriteLine();
+            message1 = msg;
+            println = true;
+            //Console.WriteLine(msg);
+            //Console.WriteLine();
         }
 
         private static string ReadLineDefault(string defaultValue)
         {
             //Allow Console.ReadLine with a default value
             string userInput = Console.ReadLine();
-            Console.WriteLine();
+            //Console.WriteLine();
             if (userInput == "")
                 return defaultValue;
             else
