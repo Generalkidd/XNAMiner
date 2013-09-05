@@ -35,7 +35,8 @@ namespace XNAMiner
         bool error = false;
         bool retry = false;
         bool select = false;
-        public bool consoleClear = false;
+        bool mineContinue = false;
+        bool consoleClear = false;
 
         public Game1()
         {
@@ -89,14 +90,21 @@ namespace XNAMiner
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+            {
                 this.Exit();
+            }
+
+            if (Keyboard.GetState(PlayerIndex.One).IsKeyDown(Keys.Escape))
+            {
+                this.Exit();
+            }
 
             try
             {
                 _pool = SelectPool();
                 _work = GetWork();
-                while (true)
-                {
+                //while (true)
+                //{
                     if (_work == null || _work.Age > _maxAgeTicks)
                         _work = GetWork();
 
@@ -107,12 +115,13 @@ namespace XNAMiner
                     }
                     else
                         PrintCurrentState();
-                }
+                //}
             }
             catch (Exception e)
             {
                 errorMessage = e.Message;
                 error = true;
+                retry = true;
                 //Console.WriteLine();
                 //Console.Write("ERROR: ");
                 //Console.WriteLine(e.Message);
@@ -120,8 +129,6 @@ namespace XNAMiner
             //Console.WriteLine();
             //Console.Write("Hit 'Enter' to try again...");
             //Console.ReadLine();
-
-            retry = true;
 
             // TODO: Add your update logic here
 
@@ -140,7 +147,6 @@ namespace XNAMiner
             if (consoleClear == true)
             {
                 spriteBatch.Begin();
-                GraphicsDevice.Clear(Color.Black);
                 spriteBatch.DrawString(font1, "*****************************", new Vector2(10, 20), Color.White);
                 spriteBatch.DrawString(font1, "*** Minimal Bitcoin Miner ***", new Vector2(10, 40), Color.White);
                 spriteBatch.DrawString(font1, "*****************************", new Vector2(10, 60), Color.White);
@@ -160,6 +166,15 @@ namespace XNAMiner
             {
                 spriteBatch.Begin();
                 spriteBatch.DrawString(font1, "Select Pool: ", new Vector2(10, 128), Color.White);
+                select = false;
+                spriteBatch.End();
+            }
+
+            if (mineContinue == true)
+            {
+                spriteBatch.Begin();
+                spriteBatch.DrawString(font1, "Hit 'Enter' to continue...", new Vector2(10, 200), Color.White);
+                mineContinue = false; 
                 spriteBatch.End();
             }
 
@@ -382,7 +397,7 @@ namespace XNAMiner
             Print("Chose a Mining Pool 'user:password@url:port' or leave empty to skip.");
             select = true;
             //Console.Write("Select Pool: ");
-            string login = ReadLineDefault("lithander_2:foo@btcguild.com:8332");
+            string login = ReadLineDefault("lithander_2:foo@btcguild.com:8332"); //Pool must be hard coded until user input is implemented.
             return new Pool(login);
         }
 
@@ -408,9 +423,9 @@ namespace XNAMiner
                 Print("Server accepted the Share!");
             else
                 Print("Server declined the Share!");
-
-            Console.Write("Hit 'Enter' to continue...");
-            Console.ReadLine();
+            mineContinue = true;
+            //Console.Write("Hit 'Enter' to continue...");
+            //Console.ReadLine();
         }
 
         DateTime _lastPrint = DateTime.Now;
@@ -440,7 +455,7 @@ namespace XNAMiner
         private static string ReadLineDefault(string defaultValue)
         {
             //Allow Console.ReadLine with a default value
-            string userInput = Console.ReadLine();
+            string userInput = ""; //Need a way to get user input for their mining pool!
             //Console.WriteLine();
             if (userInput == "")
                 return defaultValue;
