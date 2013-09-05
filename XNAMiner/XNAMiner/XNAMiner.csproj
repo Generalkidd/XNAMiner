@@ -83,6 +83,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ParallelTasks\ParallelTasks\ParallelTasks\ParallelTasks.csproj">
+      <Project>{D0B69D3D-70AD-4C7C-BEFB-AFF902AB9BD2}</Project>
+      <Name>ParallelTasks</Name>
+    </ProjectReference>
     <ProjectReference Include="..\XNAMinerContent\XNAMinerContent.contentproj">
       <Name>XNAMinerContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

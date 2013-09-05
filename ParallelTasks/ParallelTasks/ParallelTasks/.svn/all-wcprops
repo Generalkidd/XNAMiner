@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 33
+/svn/!svn/ver/59280/ParallelTasks
+END
+(WP7) ParallelTasks.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/59279/ParallelTasks/(WP7)%20ParallelTasks.csproj
+END
+LoopWork.cs
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/50479/ParallelTasks/LoopWork.cs
+END
+DelegateWork.cs
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/46673/ParallelTasks/DelegateWork.cs
+END
+TaskException.cs
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/59279/ParallelTasks/TaskException.cs
+END
+SpinLock.cs
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/46673/ParallelTasks/SpinLock.cs
+END
+Semaphore.cs
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/46673/ParallelTasks/Semaphore.cs
+END
+SimpleScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/59278/ParallelTasks/SimpleScheduler.cs
+END
+IWorkScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/46673/ParallelTasks/IWorkScheduler.cs
+END
+Hashtable.cs
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/59278/ParallelTasks/Hashtable.cs
+END
+IWork.cs
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/46673/ParallelTasks/IWork.cs
+END
+Parallel.cs
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/59278/ParallelTasks/Parallel.cs
+END
+ParallelTasks.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/59279/ParallelTasks/ParallelTasks.csproj
+END
+WorkOptions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/59278/ParallelTasks/WorkOptions.cs
+END
+WorkItem.cs
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/59279/ParallelTasks/WorkItem.cs
+END
+Singleton.cs
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/46673/ParallelTasks/Singleton.cs
+END
+Task.cs
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/46673/ParallelTasks/Task.cs
+END
+Deque.cs
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/46673/ParallelTasks/Deque.cs
+END
+(360) ParallelTasks.csproj
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/59279/ParallelTasks/(360)%20ParallelTasks.csproj
+END
+WorkStealingScheduler.cs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/59278/ParallelTasks/WorkStealingScheduler.cs
+END
+Pool.cs
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/59279/ParallelTasks/Pool.cs
+END
+BackgroundWorker.cs
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/46673/ParallelTasks/BackgroundWorker.cs
+END
+Worker.cs
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/59278/ParallelTasks/Worker.cs
+END
+ParallelTasks.csproj.user
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/59280/ParallelTasks/ParallelTasks.csproj.user
+END
+Future.cs
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/59278/ParallelTasks/Future.cs
+END

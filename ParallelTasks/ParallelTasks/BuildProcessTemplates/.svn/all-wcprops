@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/52373/BuildProcessTemplates
+END
+DefaultTemplate.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/52373/BuildProcessTemplates/DefaultTemplate.xaml
+END
+UpgradeTemplate.xaml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/52373/BuildProcessTemplates/UpgradeTemplate.xaml
+END
